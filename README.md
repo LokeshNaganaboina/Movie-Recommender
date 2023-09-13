@@ -46,6 +46,8 @@ Open the streamlit application
 
 Search for a movie in the given list and click on the enter button, it will show the movie details and also it shows Similar Top 5 movies recommended on your given search movie
 
+Here is a sample look of how the app looks like 
+![Logo of Sample Not Available](sample.png)
 
 
 ## Decoding the Movie Recommender: A Technical Walkthrough
