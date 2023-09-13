@@ -1,7 +1,7 @@
 
 # Content Based Movie Recommender Using Machine Learning
 
-This project features a content-based movie recommendation system leveraging data from TMDB (The Movie Database). The system, deployed with Streamlit, provides users with tailored recommendations for their top 5 movie picks. Highlights include proficiency in content-based filtering, data acquisition, and web app development.
+This project features a content-based movie recommendation system leveraging data from TMDB (The Movie Database). The system, deployed with Streamlit, provides users with tailored recommendations for their top 5 movie picks.
 
 
 
