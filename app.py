@@ -18,6 +18,11 @@ def fetch_data(movie_id):
     data = requests.get(url)
     data = data.json()
     return data
+
+def resizeImage(image,size):
+    img = Image.open(image)
+    img = img.resize(size)
+    return img
     
 def recommend(movie):
     #Get the movie index
@@ -35,7 +40,7 @@ def recommend(movie):
         
     return movie_titles,movie_posters
 
-st.header('Movie Recommender')
+st.header('CineSelect : Movie Recommender')
 
 with open('movies_data_dict.pkl','rb') as file:
     moviesDict = pickle.load(file)
@@ -57,14 +62,39 @@ if st.button('Show Recommendation'):
     res = requests.get(url)
     res = res.json()
     
-    st.image( "https://image.tmdb.org/t/p/w500/"+res["poster_path"], caption=selected_movie, use_column_width=True)
-    st.write('Movie Title : ',res["title"])
-    st.write('Movie Overview : ',res["overview"])
-    st.write('Movie Runtime :',res["runtime"])
-    st.write('Movie Language :',res["spoken_languages"][0]["english_name"])
-    st.write('Movie Release Date :',res["release_date"])
-    st.write('Movie Budget :',res["budget"])
-    st.write('Movie Collection :',res["revenue"])
+    try:
+        poster = res["poster_path"]
+        title = res["title"]
+        overview = res["overview"]
+        runtime = res["runtime"]
+        movie_language = res["spoken_languages"][0]["english_name"]
+        release_date = res["release_date"]
+        budget = res["budget"]
+        revenue = res["revenue"]
+    except:
+        poster = 'Not Available'
+        title = 'Not Available'
+        overview = 'Not Available'
+        runtime = 'Not Available'
+        movie_language = 'Not Available'
+        release_date = 'Not Available'
+        budget = 'Not Available'
+        revenue = 'Not Available'
+    
+    #resized_image = resizeImage("https://image.tmdb.org/t/p/w500/"+poster,(300,300))
+    
+    #image = Image.open("https://image.tmdb.org/t/p/w500"+poster)
+    column1,column2 = st.columns(2)
+    with column1:
+        st.image( "https://image.tmdb.org/t/p/w500"+poster , width = 200, caption=selected_movie)
+    with column2:
+        st.write('Movie Title : ',title)
+        st.write('Movie Overview : ',overview)
+        st.write('Movie Runtime :',runtime,' minutes')
+        st.write('Movie Language :',movie_language)
+        st.write('Movie Release Date :',release_date)
+        st.write('Movie Budget :',budget,' crores')
+        st.write('Movie Collection :',revenue,' crores')
     
     st.header('Movies you might also like :')
     
