@@ -31,7 +31,7 @@ venv_name\Scripts\activate #For Windows users
 Install the necessary packages to run this project from requirements.txt
 
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 To run the app, open the app.ipynb cell and run 
